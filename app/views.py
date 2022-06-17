@@ -3,10 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from app.models import Customer
 from app.forms import customerForm
 
-
 def index(request):
     return HttpResponse("<b>Hello, world. You're at the polls index.</b>")
-
 
 def text(request):
     output = '<b>This is a bold text.</b>'
@@ -14,7 +12,6 @@ def text(request):
     output += '<u>This is a underlined text.</u>'
     output += '<p>This is a paragraph.</p>'
     return HttpResponse(output)
-
 
 def temp(request):
     my_dict = {'my_name': "Jordy", 'my_age': "23"}
@@ -37,3 +34,8 @@ def newCustomerForm(request):
             # return index(request)
             return HttpResponseRedirect('../')
     return render(request, 'formInput.html', context={'form': form})
+
+def detailCustomer(request, key):
+    customerDetail = Customer.objects.filter(name__exact=key)
+    customerDetailDict = {'customer': customerDetail}
+    return render(request, 'detailCustomer.html', context=customerDetailDict)

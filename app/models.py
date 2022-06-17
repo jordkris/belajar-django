@@ -11,7 +11,6 @@ class User(models.Model):
 
 class Customer(models.Model):
     name = models.CharField(primary_key=True,max_length=50)
-    age = models.IntegerField()
     dateOfBirth = models.DateField()
     accountNumber = models.CharField(max_length=50)
     phoneNumber = models.CharField(max_length=50)

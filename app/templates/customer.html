@@ -30,7 +30,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
-                                        <th>Age</th>
                                         <th>Date Of Birth</th>
                                         <th>Account Number</th>
                                         <th>Phone Number</th>
@@ -43,15 +42,16 @@
                                         <tr>
                                             <td>{{ forloop.counter }}</td>
                                             <td>{{ customer.name }}</td>
-                                            <td>{{ customer.age }}</td>
                                             <td>{{ customer.dateOfBirth }}</td>
                                             <td>{{ customer.accountNumber }}</td>
                                             <td>{{ customer.phoneNumber }}</td>
                                             <td>{{ customer.address }}</td>
                                             <td>
+                                                <a href="{% url 'detailCustomer' customer.name %}">
                                                 <button type="button" class="btn btn-secondary">
                                                     <i class="fa-solid fa-info"></i> Detail
                                                 </button>
+                                            </a>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-warning">

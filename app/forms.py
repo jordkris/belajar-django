@@ -3,7 +3,6 @@ from app.models import Customer
 
 class customerForm(forms.ModelForm):
     name = forms.CharField()
-    age = forms.IntegerField()
     dateOfBirth = forms.DateField(widget=forms.SelectDateWidget)
     accountNumber = forms.CharField(max_length=50)
     phoneNumber = forms.CharField(max_length=50)

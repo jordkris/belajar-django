@@ -14,7 +14,6 @@ class Migration(migrations.Migration):
             name='Customer',
             fields=[
                 ('name', models.CharField(max_length=50, primary_key=True, serialize=False)),
-                ('age', models.IntegerField()),
                 ('dateOfBirth', models.DateField()),
                 ('accountNumber', models.CharField(max_length=50)),
                 ('phoneNumber', models.CharField(max_length=50)),
