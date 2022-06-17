@@ -6,7 +6,7 @@ from django import forms
 
 
 def index(request):
-    return HttpResponse("<b>Hello, world. You're at the polls index.</b>")
+    return render(request, 'home.html')
 
 
 def text(request):
@@ -38,7 +38,7 @@ def addCustomer(request):
             return HttpResponseRedirect('../')
         else:
             print('Validation Error')
-    return render(request, 'addCustomer.html', context={'form': form})
+    return render(request, 'formCustomer.html', context={'form': form})
 
 
 def detailCustomer(request, key):
@@ -67,4 +67,4 @@ def editCustomer(request, key):
             return HttpResponseRedirect('../')
         else:
             print('Validation error!')
-    return render(request, 'addCustomer.html', context={'form': form})
+    return render(request, 'formCustomer.html', context={'form': form})

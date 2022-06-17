@@ -11,58 +11,46 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/36be16582a.js" crossorigin="anonymous"></script>
-        <title>Customer Data</title>
+        <title>Reksadana Data</title>
     </head>
     <body>
         <div class="container">
-            <h1>Customer Data</h1>
-            <a href="{% url 'index' %}">
+            <h1>Portfolio Reksadana {{username}}</h1>
+            <a href="{% url 'users' %}">
                 <button type="button" class="btn btn-warning">
                     <i class="fa-solid fa-arrow-left"></i> Back
                 </button>
             </a>
             <div class="card">
                 <div class="card-body">
-                    <a href="{% url 'addCustomer' %}">
+                    <a href="{% url 'buyReksaDana' username %}">
                         <button type="button" class="btn btn-primary">
-                            <i class="fa-solid fa-plus"></i> Add Data
+                            <i class="fa-solid fa-cart-shopping"></i> Buy Reksadana
                         </button>
                     </a>
-                    {% if customerData %}
+                    {% if reksaDana %}
                         <div class="table-responsive">
                             <table border="1" class="table-striped text-center">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>User Name</th>
                                         <th>Name</th>
-                                        <th colspan="3">Action</th>
+                                        <th>Unit Price</th>
+                                        <th>Unit Number</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for customer in customerData %}
+                                    {% for rd in reksaDana %}
                                         <tr>
                                             <td>{{ forloop.counter }}</td>
-                                            <td>{{ customer.userName }}</td>
-                                            <td>{{ customer.name }}</td>
+                                            <td>{{ rd.name }}</td>
+                                            <td>{{ rd.unitPrice }}</td>
+                                            <td>{{ rd.unitNumber }}</td>
                                             <td>
-                                                <a href="{% url 'detailCustomer' customer.userName %}">
-                                                    <button type="button" class="btn btn-secondary">
-                                                        <i class="fa-solid fa-info"></i> Detail
-                                                    </button>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{% url 'editCustomer' customer.userName %}">
-                                                    <button type="button" class="btn btn-warning">
-                                                        <i class="fa-solid fa-pen-to-square"></i> Edit
-                                                    </button>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{% url 'deleteCustomer' customer.userName %}">
+                                                <a href="{% url 'sellReksaDana' username rd.id %}">
                                                     <button type="button" class="btn btn-danger">
-                                                        <i class="fa-solid fa-trash"></i> Delete
+                                                        <i class="fa-solid fa-book-skull"></i> Sell
                                                     </button>
                                                 </a>
                                             </td>
@@ -72,7 +60,7 @@
                             </table>
                         </div>
                     {% else %}
-                        <p>No Customer Data</p>
+                        <p>No Portfolio Data</p>
                     {% endif %}
                 </div>
             </div>

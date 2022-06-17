@@ -23,4 +23,5 @@ urlpatterns = [
     path('text/', views.text, name='text'),
     path('temp/', views.temp, name='temp'),
     path('customer/', include('app.urls')),
+    path('finalboss/', include('finalboss.urls')),
 ]

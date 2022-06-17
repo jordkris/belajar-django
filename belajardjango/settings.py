@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-ldi+fmb+6!hd^b3jwna@$zo&)#h)=fymqd1(u05vxs#d7!%vy2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost'
+]
 
 
 # Application definition
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'finalboss',
     'crispy_forms'
 ]
 

@@ -27,7 +27,9 @@
                     <form method="post">
                         {{ form | crispy }}
                         {% csrf_token %}
-                        <input type="submit" name="editCustomer" class="btn btn-success" value="SUBMIT"/>
+                        <button type="submit" name="addCustomer" class="btn btn-success">
+                            <i class="fa-solid fa-floppy-disk"></i> Save 
+                        </button>
                     </form>
                 </div>
             </div>

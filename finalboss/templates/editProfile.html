@@ -11,15 +11,15 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/36be16582a.js" crossorigin="anonymous"></script>
-        <title>Customer Input From</title>
+        <title>Edit Profile</title>
     </head>
     <body>
         {% load crispy_forms_tags %}
         <div class="container">
-            <h1>Customer Input Form</h1>
+            <h1>Edit Profile</h1>
             <div class="card">
                 <div class="card-body">
-                    <a href="{% url 'customer' %}">
+                    <a href="{% url 'users' %}">
                         <button type="button" class="btn btn-warning">
                             <i class="fa-solid fa-arrow-left"></i> Back
                         </button>
@@ -27,8 +27,8 @@
                     <form method="post">
                         {{ form | crispy }}
                         {% csrf_token %}
-                        <button type="submit" name="addCustomer" class="btn btn-success">
-                            <i class="fa-solid fa-floppy-disk"></i> Submit 
+                        <button type="submit" name="editProfile" class="btn btn-success">
+                            <i class="fa-solid fa-floppy-disk"></i> Save 
                         </button>
                     </form>
                 </div>
