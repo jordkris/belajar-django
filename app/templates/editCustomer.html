@@ -11,12 +11,12 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/36be16582a.js" crossorigin="anonymous"></script>
-        <title>Customer Detail</title>
+        <title>Customer Input From</title>
     </head>
     <body>
         {% load crispy_forms_tags %}
         <div class="container">
-            <h1>Customer Detail</h1>
+            <h1>Customer Input Form</h1>
             <div class="card">
                 <div class="card-body">
                     <a href="{% url 'customer' %}">
@@ -24,37 +24,11 @@
                             <i class="fa-solid fa-arrow-left"></i> Back
                         </button>
                     </a>
-                    {% if customer %}
-                    <h6>Detail customer for username : {{customer.userName}} </h6>
-                    <div class="table-responsive">
-                        <table class="table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>: {{ customer.name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date Of Birth</td>
-                                    <td>: {{ customer.dateOfBirth }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Account Number</td>
-                                    <td>: {{ customer.accountNumber }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Phone Number</td>
-                                    <td>: {{ customer.phoneNumber }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>: {{ customer.address }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    {% else %}
-                    <p>No Customer Data Found!</p>
-                    {% endif %}
+                    <form method="post">
+                        {{ form | crispy }}
+                        {% csrf_token %}
+                        <input type="submit" name="editCustomer" class="btn btn-success" value="SUBMIT"/>
+                    </form>
                 </div>
             </div>
         </div>

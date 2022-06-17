@@ -29,11 +29,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>User Name</th>
                                         <th>Name</th>
-                                        <th>Date Of Birth</th>
-                                        <th>Account Number</th>
-                                        <th>Phone Number</th>
-                                        <th>Address</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
@@ -41,13 +38,10 @@
                                     {% for customer in customerData %}
                                         <tr>
                                             <td>{{ forloop.counter }}</td>
+                                            <td>{{ customer.userName }}</td>
                                             <td>{{ customer.name }}</td>
-                                            <td>{{ customer.dateOfBirth }}</td>
-                                            <td>{{ customer.accountNumber }}</td>
-                                            <td>{{ customer.phoneNumber }}</td>
-                                            <td>{{ customer.address }}</td>
                                             <td>
-                                                <a href="{% url 'detailCustomer' customer.name %}">
+                                                <a href="{% url 'detailCustomer' customer.userName %}">
                                                 <button type="button" class="btn btn-secondary">
                                                     <i class="fa-solid fa-info"></i> Detail
                                                 </button>

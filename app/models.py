@@ -10,7 +10,8 @@ class User(models.Model):
     phoneNumber = models.IntegerField()
 
 class Customer(models.Model):
-    name = models.CharField(primary_key=True,max_length=50)
+    userName = models.CharField(primary_key=True,max_length=50)
+    name = models.CharField(max_length=50)
     dateOfBirth = models.DateField()
     accountNumber = models.CharField(max_length=50)
     phoneNumber = models.CharField(max_length=50)

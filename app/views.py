@@ -36,6 +36,6 @@ def newCustomerForm(request):
     return render(request, 'formInput.html', context={'form': form})
 
 def detailCustomer(request, key):
-    customerDetail = Customer.objects.filter(name__exact=key)
+    customerDetail = Customer.objects.get(userName__exact=key)
     customerDetailDict = {'customer': customerDetail}
     return render(request, 'detailCustomer.html', context=customerDetailDict)
