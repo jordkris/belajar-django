@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from app.models import Customer
 from app.forms import customerForm
 
+
 def index(request):
     return HttpResponse("<b>Hello, world. You're at the polls index.</b>")
+
 
 def text(request):
     output = '<b>This is a bold text.</b>'
@@ -25,10 +27,13 @@ def customer(request):
     return render(request, 'customer.html', context=customerDataDict)
 
 
-def customerFormView(request):
+def newCustomerForm(request):
     form = customerForm()
     if request.method == 'POST':
         form = customerForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             print('this is valid')
-    return render(request, 'customer.html', context={'form': form})
+            form.save(commit=True)
+            # return index(request)
+            return HttpResponseRedirect('../')
+    return render(request, 'formInput.html', context={'form': form})
