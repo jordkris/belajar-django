@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from app.models import Customer
 from app.forms import customerForm
+from django import forms
 
 
 def index(request):
@@ -27,15 +28,16 @@ def customer(request):
     return render(request, 'customer.html', context=customerDataDict)
 
 
-def addCustomerForm(request):
+def addCustomer(request):
     form = customerForm()
     if request.method == 'POST':
         form = customerForm(request.POST)
         if form.is_valid():
-            print('this is valid')
             form.save(commit=True)
             # return index(request)
             return HttpResponseRedirect('../')
+        else:
+            print('Validation Error')
     return render(request, 'addCustomer.html', context={'form': form})
 
 
@@ -52,3 +54,17 @@ def deleteCustomer(request, key):
         customerDetail.delete()
         return HttpResponseRedirect('../')
     return render(request, 'deleteCustomer.html', context=customerDetailDict)
+
+
+def editCustomer(request, key):
+    customerDetail = Customer.objects.get(userName__exact=key)
+    form = customerForm(instance=customerDetail)
+    if request.method == 'POST':
+        form = customerForm(request.POST, instance=customerDetail)
+        if form.is_valid():
+            form.save(commit=True)
+            # return index(request)
+            return HttpResponseRedirect('../')
+        else:
+            print('Validation error!')
+    return render(request, 'addCustomer.html', context={'form': form})
