@@ -36,7 +36,7 @@ def addCustomerForm(request):
             form.save(commit=True)
             # return index(request)
             return HttpResponseRedirect('../')
-    return render(request, 'formInput.html', context={'form': form})
+    return render(request, 'addCustomer.html', context={'form': form})
 
 
 def detailCustomer(request, key):
