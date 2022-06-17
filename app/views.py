@@ -3,8 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from app.models import Customer
 from app.forms import customerForm
 
+
 def index(request):
     return HttpResponse("<b>Hello, world. You're at the polls index.</b>")
+
 
 def text(request):
     output = '<b>This is a bold text.</b>'
@@ -12,6 +14,7 @@ def text(request):
     output += '<u>This is a underlined text.</u>'
     output += '<p>This is a paragraph.</p>'
     return HttpResponse(output)
+
 
 def temp(request):
     my_dict = {'my_name': "Jordy", 'my_age': "23"}
@@ -24,7 +27,7 @@ def customer(request):
     return render(request, 'customer.html', context=customerDataDict)
 
 
-def newCustomerForm(request):
+def addCustomerForm(request):
     form = customerForm()
     if request.method == 'POST':
         form = customerForm(request.POST)
@@ -35,7 +38,17 @@ def newCustomerForm(request):
             return HttpResponseRedirect('../')
     return render(request, 'formInput.html', context={'form': form})
 
+
 def detailCustomer(request, key):
     customerDetail = Customer.objects.get(userName__exact=key)
     customerDetailDict = {'customer': customerDetail}
     return render(request, 'detailCustomer.html', context=customerDetailDict)
+
+
+def deleteCustomer(request, key):
+    customerDetail = Customer.objects.get(userName__exact=key)
+    customerDetailDict = {'customer': customerDetail}
+    if request.method == 'POST':
+        customerDetail.delete()
+        return HttpResponseRedirect('../')
+    return render(request, 'deleteCustomer.html', context=customerDetailDict)
